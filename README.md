@@ -15,3 +15,11 @@ relationship lines.
 Diagram.
 • Apply your knowledge of DROP TABLE and CREATE TABLE statements to create tables using a
 MySQL client (DBeaver)
+
+WEEK THREE (Week 9 Coding Assignment):
+• Learn to write a menu-driven application with correct exception handling.
+• Implement a scanner to gather user input from the console.
+• Learn how to work with BigDecimal objects.
+• Use JDBC to correctly handle resources (Connections and PreparedStatements) ensuring that
+they are closed properly.
+• Implement JDBC methods to insert a Project object into the project table.
