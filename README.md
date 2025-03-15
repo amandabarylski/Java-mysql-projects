@@ -23,3 +23,11 @@ WEEK THREE (Week 9 Coding Assignment):
 • Use JDBC to correctly handle resources (Connections and PreparedStatements) ensuring that
 they are closed properly.
 • Implement JDBC methods to insert a Project object into the project table.
+
+WEEK FOUR (Week 10 Coding Assignment):
+• Hone your SQL query skills by writing SQL statements to fetch a List of Project records.
+• Learn how to perform multiple queries in a single transaction.
+• Write an inner join to fetch category rows related to a project row.
+• Use an Optional to either return a project record or to throw a custom Exception.
+• Practice writing Lambda expressions both to list the projects and to throw a custom Exception
+from an Optional.
