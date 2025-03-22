@@ -31,3 +31,11 @@ WEEK FOUR (Week 10 Coding Assignment):
 • Use an Optional to either return a project record or to throw a custom Exception.
 • Practice writing Lambda expressions both to list the projects and to throw a custom Exception
 from an Optional.
+
+WEEK FIVE (Week 11 Coding Assignment):
+• Modify project details using the UPDATE statement.
+• Delete a project and all child rows using the DELETE statement.
+• Observe that using ON DELETE CASCADE automatically deletes child rows with a foreign key
+relationship.
+• Use the return value from PreparedStatement.executeUpdate() to determine if a row
+was updated or deleted.

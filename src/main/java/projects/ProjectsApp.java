@@ -18,7 +18,9 @@ public class ProjectsApp {
 	private List<String> operations = List.of(
 			"1) Add a project",
 			"2) List projects",
-			"3) Select a project"
+			"3) Select a project",
+			"4) Update project details",
+			"5) Delete a project"
 	);
 	// @formatter:on
 	
@@ -55,6 +57,12 @@ public class ProjectsApp {
 					case 3:
 						selectProject();
 						break;
+					case 4:
+						updateProjectDetails();
+						break;
+					case 5:
+						deleteProject();
+						break;
 					default:
 						System.out.println("\n" + selection + " is not a valid selection. Try again.");
 						break;
@@ -63,6 +71,54 @@ public class ProjectsApp {
 				System.out.println("\nError: " + e + " Try again.");
 			}
 		}
+	}
+
+	private void deleteProject() {
+		listProjects();
+		
+		Integer idToDelete = getIntInput("Enter the ID of the project you wish to delete (press Enter to cancel)");
+		//I added this integer as I could not use getProjectId if the current project was null and it would throw an error.
+		Integer currentId = Objects.isNull(curProject) ? null : curProject.getProjectId();
+		
+		//Without this outer if statement, if the user did not enter a number, then the projectService error would trigger,
+		//with "project with ID=null" shown. I wanted it to just exit to the menu with a null, so I added the Objects.nonNull check.
+		if(Objects.nonNull(idToDelete)) {
+			projectService.deleteProject(idToDelete);
+			System.out.println("Project with ID=" + idToDelete + " was deleted.");
+			
+			if(currentId.equals(idToDelete)) {
+				curProject = null;
+			}
+		}
+
+	}
+
+	//Before testing my update method, I created the projects_data.sql file,
+	//so that I could fully reset my SQL database in Workbench afterward.
+	private void updateProjectDetails() {
+		if (Objects.isNull(curProject)) {
+			System.out.println("\nPlease select a project.");
+			return;
+		}
+		
+		//I modeled my printed messages for user inputs after the example given in the instructions.
+		String projectName = getStringInput("Enter the project name [" + curProject.getProjectName() + "]");
+		BigDecimal estimatedHours = getDecimalInput("Enter the estimated hours [" + curProject.getEstimatedHours() + "]");
+		BigDecimal actualHours = getDecimalInput("Enter the actual hours [" + curProject.getEstimatedHours() + "]");
+		Integer difficulty = getIntInput("Enter the project difficulty (1-5) [" + curProject.getDifficulty() + "]");
+		String notes = getStringInput("Enter the project notes [" + curProject.getNotes() + "]");
+		
+		Project project = new Project();
+		project.setProjectId(curProject.getProjectId());
+		project.setProjectName(Objects.isNull(projectName) ? curProject.getProjectName() : projectName);
+		project.setEstimatedHours(Objects.isNull(estimatedHours) ? curProject.getEstimatedHours() : estimatedHours);
+		project.setActualHours(Objects.isNull(actualHours) ? curProject.getActualHours() : actualHours);
+		project.setDifficulty(Objects.isNull(difficulty) ? curProject.getDifficulty() : difficulty);
+		project.setNotes(Objects.isNull(notes) ? curProject.getNotes() : notes);
+		
+		projectService.modifyProjectDetails(project);
+		
+		curProject = projectService.fetchProjectById(curProject.getProjectId());
 	}
 
 	private void selectProject() {
