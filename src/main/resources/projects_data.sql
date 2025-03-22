@@ -1,11 +1,11 @@
-INSERT INTO projects (project_name, estimated_hours, actual_hours, difficulty, notes)
+INSERT INTO project (project_name, estimated_hours, actual_hours, difficulty, notes)
 VALUES ("Build a treehouse", 8, 9, 4, "Be careful when waterproofing, especially the roof."), 
 ("Hang a door", 4, 3, 3, "Use the door hangers from Home Depot.");
 
 INSERT INTO material (project_id, material_name, num_required, cost)
 VALUES (1, "hardwood boards", 36, 55.60),
 (1, "cans of sealant", 2, 7.26),
-(1, "rope coils", 2, 4.50).
+(1, "rope coils", 2, 4.50),
 (1, "nails", 72, 2.25),
 (2, "door in frame", 1, 750),
 (2, "2-inch screws", 20, 1.45),
